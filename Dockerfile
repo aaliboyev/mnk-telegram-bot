@@ -84,7 +84,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Uncomment the following line to disable telemetry at run time
 # ENV NEXT_TELEMETRY_DISABLED 1
-
 # Note: Don't expose ports here, Compose will handle that for us
 
 CMD ["node", "server.js"]
