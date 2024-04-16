@@ -3,6 +3,8 @@ version: '3.7'
 services:
   app:
     image: 034992998866.dkr.ecr.us-east-1.amazonaws.com/mnk-telegram-bot:latest
+    env_file:
+      - .env
     volumes:
       - app-data:/data
     networks:
@@ -13,6 +15,7 @@ services:
 #      placement:
 #        constraints:
 #          - node.hostname != n2.asy.ai
+
       labels:
         - traefik.enable=true
         - traefik.docker.network=cloud-public
