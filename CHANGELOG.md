@@ -1,3 +1,12 @@
+## [0.1.5](https://github.com/aaliboyev/mnk-telegram-bot/compare/v0.1.4...v0.1.5) (2024-04-16)
+
+
+### Bug Fixes
+
+* **deployment:** Fixed deployment dockerfile ([60d79de](https://github.com/aaliboyev/mnk-telegram-bot/commit/60d79de7a36e2da6802dfdb230082ab6db4f27e9))
+
+
+
 ## [0.1.4](https://github.com/aaliboyev/mnk-telegram-bot/compare/v0.1.3...v0.1.4) (2024-04-16)
 
 
