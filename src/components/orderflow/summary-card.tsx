@@ -16,26 +16,31 @@ export const SummaryCard = ({paymentPage=false}: Props) => {
 
     const totalPrice = Intl.NumberFormat('en-US').format(cartStore.totalPrice).replaceAll(',', ' ')
     return (
-        <>
-            <div
-                className="bg-white flex items-center justify-between border-t border-t-primary px-4 py-2 w-full">
-                <div>
-                    <strong className="text-primary font-extrabold text-xl">{totalPrice} сум</strong>
-                    <p className="text-black text-xs font-extrabold">
-                        Бесплатная доставка
-                    </p>
-                    <p className="text-muted-foreground text-xs ">
-                        Скидка 10%
-                    </p>
-                </div>
-                <div className="py-2">
-                    <Button asChild className="rounded-full text-lg bg-primary text-md text-white font-extrabold" variant="outline">
-                        <Link href={paymentPage ? `/${uriPrefix}/payment` : `/${uriPrefix}/order`}>
-                            {paymentPage ? 'Оплатить' : 'Оформить заказ'}
-                        </Link>
-                    </Button>
+        <div>
+            <div className="h-20 w-full"></div>
+            <div className="fixed bottom-0 w-full">
+                <div
+                    className="bg-white flex items-center justify-between border-t border-t-primary px-4 py-2 w-full">
+                    <div>
+                        <strong className="text-primary font-extrabold text-xl">{totalPrice} сум</strong>
+                        <p className="text-black text-xs font-extrabold">
+                            Бесплатная доставка
+                        </p>
+                        <p className="text-muted-foreground text-xs ">
+                            Скидка 10%
+                        </p>
+                    </div>
+                    <div className="py-2">
+                        <Button asChild
+                                className="rounded-full text-lg bg-primary text-md text-white font-extrabold"
+                                variant="outline">
+                            <Link href={paymentPage ? `/${uriPrefix}/payment` : `/${uriPrefix}/order`}>
+                                {paymentPage ? 'Оплатить' : 'Оформить заказ'}
+                            </Link>
+                        </Button>
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

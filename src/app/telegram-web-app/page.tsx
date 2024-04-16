@@ -16,12 +16,8 @@ export default function Home() {
                 <TabsContent value="shop"></TabsContent>
                 <TabsContent value="ordering"></TabsContent>
             </Tabs>
-            <div>
-                <div className="h-20 w-full"></div>
-                <div className="fixed bottom-0 w-full">
-                    <SummaryCard/>
-                </div>
-            </div>
+            <SummaryCard/>
+
         </>
     )
 }
