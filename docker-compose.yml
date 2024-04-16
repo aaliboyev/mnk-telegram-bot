@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
   app:
+    container_name: mnk-telegram-bot
     image: 034992998866.dkr.ecr.us-east-1.amazonaws.com/mnk-telegram-bot:latest
     volumes:
       - app-data:/data
