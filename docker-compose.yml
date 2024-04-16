@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  app:
+  mnk-telegram-bot:
     container_name: mnk-telegram-bot
     image: 034992998866.dkr.ecr.us-east-1.amazonaws.com/mnk-telegram-bot:latest
     volumes:
@@ -14,22 +14,18 @@ services:
 #      placement:
 #        constraints:
 #          - node.hostname != n2.asy.ai
-
       labels:
         - traefik.enable=true
         - traefik.docker.network=cloud-public
         - traefik.constraint-label=cloud-public
-        - traefik.http.services.app.loadbalancer.server.port=3000
-        - traefik.http.routers.app-http.rule=Host(`orderflow.b4.uz`)
-        - traefik.http.routers.app-http.entrypoints=http
-        - traefik.http.routers.app-https.rule=Host(`orderflow.b4.uz`)
-        - traefik.http.routers.app-https.entrypoints=https
-        - traefik.http.routers.app-https.tls=true
-        - traefik.http.routers.app-https.tls.certresolver=le
-        - traefik.http.middlewares.app-redirectregex.redirectregex.regex=^https?://orderflow.b4.uz/?(.*)
-        - traefik.http.middlewares.app-redirectregex.redirectregex.replacement=https://www.orderflow.b4.uz/$${1}
-        - traefik.http.routers.app-https.middlewares=app-redirectregex
-        - traefik.http.routers.app-http.middlewares=https-redirect,app-redirectregex
+        - traefik.http.services.mnk-telegram-bot.loadbalancer.server.port=3000
+        - traefik.http.routers.mnk-telegram-bot-http.rule=Host(`orderflow.b4.uz`)
+        - traefik.http.routers.mnk-telegram-bot-http.entrypoints=http
+        - traefik.http.routers.mnk-telegram-bot-https.rule=Host(`orderflow.b4.uz`)
+        - traefik.http.routers.mnk-telegram-bot-https.entrypoints=https
+        - traefik.http.routers.mnk-telegram-bot-https.tls=true
+        - traefik.http.routers.mnk-telegram-bot-https.tls.certresolver=le
+        - traefik.http.routers.mnk-telegram-bot-http.middlewares=https-redirect
 
 volumes:
   app-data:
