@@ -1,3 +1,12 @@
+## [0.3.2](https://github.com/aaliboyev/mnk-telegram-bot/compare/v0.3.1...v0.3.2) (2024-04-18)
+
+
+### Bug Fixes
+
+* **dockerfile:** Fixed dockerfile ([3c46071](https://github.com/aaliboyev/mnk-telegram-bot/commit/3c46071a52a1603acd635a30e1fd56f17c212e4f))
+
+
+
 ## [0.3.1](https://github.com/aaliboyev/mnk-telegram-bot/compare/v0.3.0...v0.3.1) (2024-04-18)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **env:** Adding envfile ([45cbc9f](https://github.com/aaliboyev/mnk-telegram-bot/commit/45cbc9fc69a18aea4ff3822a41940f7f7c3e7167))
-
-
-
-## [0.1.5](https://github.com/aaliboyev/mnk-telegram-bot/compare/v0.1.4...v0.1.5) (2024-04-16)
-
-
-### Bug Fixes
-
-* **deployment:** Fixed deployment dockerfile ([60d79de](https://github.com/aaliboyev/mnk-telegram-bot/commit/60d79de7a36e2da6802dfdb230082ab6db4f27e9))
 
 
 
