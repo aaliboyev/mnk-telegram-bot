@@ -9,7 +9,7 @@ export default function Home() {
         <>
             <Header/>
             <Tabs defaultValue="dine" className="w-full">
-                <TopMenu/>
+                <TopMenu />
                 <TabsContent value="dine">
                     <CategoryListTab/>
                 </TabsContent>
@@ -17,7 +17,6 @@ export default function Home() {
                 <TabsContent value="ordering"></TabsContent>
             </Tabs>
             <SummaryCard/>
-
         </>
     )
 }

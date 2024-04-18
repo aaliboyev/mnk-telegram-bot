@@ -2,6 +2,7 @@
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import ProductCard from "@/components/orderflow/product-card";
 import {useCartStore} from "@/stores/cart";
+import {createRef, MutableRefObject, useEffect, useRef, useState} from "react";
 
 type Product = {
     id: number
@@ -147,19 +148,99 @@ const categoryList = {
     }
 }
 
+interface CategoryRefs {
+    [key: string]: MutableRefObject<HTMLDivElement | null>;
+}
+
+interface TabRefs {
+    [key: string]: MutableRefObject<HTMLButtonElement | null>;
+}
 
 export default function CategoryListTab() {
+    const [value, setValue] = useState("company")
+    const isProgrammaticScroll = useRef(false);
     const cartStore = useCartStore()
+    const categoryRefs: MutableRefObject<CategoryRefs> = useRef({});
+    const tabRefs: MutableRefObject<TabRefs> = useRef({});
+
+    const getRef = (key: string): MutableRefObject<HTMLDivElement | null> => {
+        if (!categoryRefs.current[key]) {
+            // Create a ref if it does not already exist
+            categoryRefs.current[key] = createRef<HTMLDivElement>();
+        }
+        return categoryRefs.current[key];
+    };
+    const getTabRef = (key: string): MutableRefObject<HTMLButtonElement | null> => {
+        if (!tabRefs.current[key]) {
+            tabRefs.current[key] = createRef<HTMLButtonElement>();
+        }
+        return tabRefs.current[key];
+    };
+
+    const scrollToCategory = (key: string) => {
+        const ref = categoryRefs.current[key];
+        if (ref && ref.current) {
+            isProgrammaticScroll.current = true;
+            const topPosition = Object.keys(categoryList)[0] === key ? 0 : ref.current.offsetTop - 100;
+            window.scrollTo({top: topPosition, behavior: "smooth"});
+
+            setTimeout(() => {
+                isProgrammaticScroll.current = false;
+            }, 1500);
+        }
+    };
+
+    const handleScroll = () => {
+        if (isProgrammaticScroll.current) {
+            return;
+        }
+        const keys = Object.keys(categoryList);
+        let activeKey = value;
+        for (let key of keys) {
+            const ref = categoryRefs.current[key];
+            if (ref && ref.current) {
+                const rect = ref.current.getBoundingClientRect();
+                if (rect.top <= 110) {
+                    activeKey = key;
+                }
+            }
+        }
+
+        const currentTabRef = tabRefs.current[activeKey];
+        if (currentTabRef && currentTabRef.current) {
+            currentTabRef.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest'
+            });
+        }
+
+        if (value !== activeKey) {
+            setValue(activeKey);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [value]);
+
     return (
-        <Tabs defaultValue="company" className="w-full mt-5">
+        <Tabs defaultValue="company" value={value} onValueChange={setValue} className="w-full mt-5">
             <h2 className="font-extrabold text-lg mx-4 text-muted-foreground">Категории</h2>
-            <div className="overflow-x-auto no-scrollbar py-1.5">
-                <TabsList className="bg-background touch-pan-x no-scrollbar px-4 gap-2.5">
+            <div className="overflow-x-auto no-scrollbar py-2 bg-background sticky top-12 z-10">
+                <TabsList className="bg-background touch-pan-x px-4 gap-2.5" >
                     {Object.entries(categoryList).map(([key, c]) => <TabsTrigger
+                        ref={getTabRef(c.value)}
                         key={c.value}
                         className="data-[state=active]:bg-primary flex justify-between items-center gap-2 font-extrabold
                         text-base py-1.5 px-2 rounded-3xl ring-1 ring-black border border-white data-[state=active]:text-white"
-                        value={c.value}>
+                        value={c.value}
+                        onClick={e => {
+                            scrollToCategory(c.value)
+                        }}
+                    >
                         <div className="rounded-3xl w-9 h-6 bg-cover"
                              style={{backgroundImage: `url(${c.image})`}}/>
                         <span>{c.title}</span>
@@ -167,38 +248,28 @@ export default function CategoryListTab() {
                 </TabsList>
             </div>
             <div>
-                {Object.entries(categoryList).map(([key, c]) => <div key={key} id="company" className="my-4 px-4">
-                    <h3 className="text-lg font-extrabold mb-2">{c.title}</h3>
-                    <div className="grid grid-cols-2 gap-3">
-                        {products[key].map(product =>
-                            <ProductCard
-                                onAddToCart={(quantity) => cartStore.addProduct({
-                                    id: product.id,
-                                    title: product.title,
-                                    image: product.image,
-                                    price: product.price,
-                                    quantity
-                                })}
-                                onQuantityChange={(quantity) => cartStore.changeQuantity(product.id, quantity)}
-                                quantity={cartStore.getProduct(product.id)?.quantity || 0}
-                                key={product.id}
-                                product={product}
-                            />
-                        )}
-                    </div>
-                </div>)}
-
-                <div id="salads">
-
-                </div>
-                <div id="cook">
-
-                </div>
-                <div id="drinks">
-
-                </div>
+                {Object.entries(categoryList).map(([key, c]) =>
+                    <div key={key} id={key} ref={getRef(key)} className="my-4 px-4">
+                        <h3 className="text-lg font-extrabold mb-2">{c.title}</h3>
+                        <div className="grid grid-cols-2 gap-3">
+                            {products[key].map(product =>
+                                <ProductCard
+                                    onAddToCart={(quantity) => cartStore.addProduct({
+                                        id: product.id,
+                                        title: product.title,
+                                        image: product.image,
+                                        price: product.price,
+                                        quantity
+                                    })}
+                                    onQuantityChange={(quantity) => cartStore.changeQuantity(product.id, quantity)}
+                                    quantity={cartStore.getProduct(product.id)?.quantity || 0}
+                                    key={product.id}
+                                    product={product}
+                                />
+                            )}
+                        </div>
+                    </div>)}
             </div>
-
         </Tabs>
     )
 }
