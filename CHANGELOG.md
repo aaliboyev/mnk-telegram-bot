@@ -1,3 +1,13 @@
+# [0.2.0](https://github.com/aaliboyev/mnk-telegram-bot/compare/v0.1.6...v0.2.0) (2024-04-16)
+
+
+### Features
+
+* **categories:** Added category listing ([cb6dd72](https://github.com/aaliboyev/mnk-telegram-bot/commit/cb6dd723df79c4d0bb77b4a4299bbbe4960e71d4))
+* **categories:** Added category listing ([c271167](https://github.com/aaliboyev/mnk-telegram-bot/commit/c27116787bf710d879ba83780c9ed7f47496207b))
+
+
+
 ## [0.1.6](https://github.com/aaliboyev/mnk-telegram-bot/compare/v0.1.5...v0.1.6) (2024-04-16)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * **deployment:** Fixed deployment dockerfile ([d2afa94](https://github.com/aaliboyev/mnk-telegram-bot/commit/d2afa94f7ac444c0b02524fab1fb68f235e5335a))
-
-
-
-## [0.1.2](https://github.com/aaliboyev/mnk-telegram-bot/compare/v0.1.1...v0.1.2) (2024-04-16)
-
-
-### Bug Fixes
-
-* **deployment:** Fixed deployment dockerfile ([9c58b39](https://github.com/aaliboyev/mnk-telegram-bot/commit/9c58b39e173edeed87ca0b721be6a0b75d305d7f))
 
 
 
