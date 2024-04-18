@@ -87,4 +87,4 @@ COPY --from=builder /app/public ./public
 # ENV NEXT_TELEMETRY_DISABLED 1
 # Note: Don't expose ports here, Compose will handle that for us
 
-CMD ["node", "server.js"]
+CMD ["npm", "run", "start"]

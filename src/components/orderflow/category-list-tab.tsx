@@ -2,7 +2,7 @@
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import ProductCard from "@/components/orderflow/product-card";
 import {useCartStore} from "@/stores/cart";
-import {createRef, MutableRefObject, useEffect, useRef, useState} from "react";
+import {createRef, MutableRefObject, useCallback, useEffect, useRef, useState} from "react";
 
 type Product = {
     id: number
@@ -190,7 +190,7 @@ export default function CategoryListTab() {
         }
     };
 
-    const handleScroll = () => {
+    const handleScroll = useCallback(() => {
         if (isProgrammaticScroll.current) {
             return;
         }
@@ -217,14 +217,14 @@ export default function CategoryListTab() {
         if (value !== activeKey) {
             setValue(activeKey);
         }
-    };
+    }, [value]);
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [value]);
+    }, [handleScroll, value]);
 
     return (
         <Tabs defaultValue="company" value={value} onValueChange={setValue} className="w-full mt-5">
