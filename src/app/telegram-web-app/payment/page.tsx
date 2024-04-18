@@ -1,4 +1,5 @@
 import {CartPageHeader} from "@/components/orderflow/header";
+import Image from "next/image"
 
 export default function PaymentPage(){
     return (
@@ -22,11 +23,11 @@ const Payme = () => {
         boxShadow: "0px 10px 20px -10px rgba(0, 0, 0, 0.4)",
         backgroundColor: "rgba(202, 242, 242, 1)",
     }} className="rounded-3xl p-4 flex items-center justify-center">
-        <div className="relative">
-            <img alt={"payme"}
-                 className="h-20 w-auto"
-                 src={"/assets/icons/payment/payme.png"}/>
-        </div>
+        <Image alt={"payme"}
+               width={80}
+               height={80}
+             className="h-20 w-auto"
+             src={"/assets/icons/payment/payme.png"}/>
     </div>
 }
 
@@ -35,27 +36,22 @@ const Click = () => {
     return <div style={{
         boxShadow: "0px 10px 20px -10px rgba(0, 22, 43, 0.5)",
         backgroundColor: "rgba(0, 22, 43, 1)",
-    }} className="rounded-3xl p-4 flex items-center justify-center">
-        <div className="relative">
-            <img alt={"click"}
-                 className="h-12 w-auto"
-                 src={"/assets/icons/payment/click.png"}
-            />
-        </div>
+    }} className="rounded-3xl relative h-28 p-4 flex items-center justify-center">
+        <Image alt={"click"}
+               width={100}
+               height={0}
+               className="h-auto"
+             src={"/assets/icons/payment/click.png"}
+        />
     </div>
 }
 
 
 const Uzum = () => {
     return <div
-        style={{
-            boxShadow: "0px 10px 20px -10px rgba(76, 5, 167, 0.5)"
-        }}
-        className="rounded-3xl overflow-hidden flex items-center justify-center">
-        <img alt={"click"}
-             className="w-full h-full"
-             src={"/assets/icons/payment/uzum.png"}
-        />
+        style={{boxShadow: "0px 10px 20px -10px rgba(76, 5, 167, 0.5)"}}
+        className="rounded-3xl h-28 relative overflow-hidden flex items-center justify-center">
+        <Image alt={"Uzum"} fill src={"/assets/icons/payment/uzum.png"}/>
     </div>
 }
 
@@ -63,13 +59,14 @@ const Cash = () => {
     return <div style={{
         boxShadow: "0px 10px 20px -10px rgba(0, 0, 0, 0.4)",
         backgroundColor: "rgba(249, 248, 241, 1)",
-    }} className="rounded-3xl p-4 pt-8 text-center overflow-hidden">
+    }}
+                className="rounded-3xl h-28 relative p-4 pt-8 text-center overflow-hidden">
         <b className={"text-xl"} style={{color: "rgba(148, 173, 143, 1)"}}>Наличные</b>
-        <div className="relative">
-            <img alt={"click"}
-                 className="absolute h-20 w-auto inset-0 mx-auto top-2"
-                 src={"/assets/icons/payment/cash.png"}
-            />
-        </div>
+        <Image alt={"click"}
+               height={80}
+               width={80}
+               className="mt-2 w-auto mx-auto"
+               src={"/assets/icons/payment/cash.png"}
+        />
     </div>
 }
