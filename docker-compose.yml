@@ -3,6 +3,8 @@ version: '3.7'
 services:
   mnk-telegram-bot:
     container_name: mnk-telegram-bot
+    ports:
+      - '3000:3000'
     image: 034992998866.dkr.ecr.us-east-1.amazonaws.com/mnk-telegram-bot:latest
     volumes:
       - app-data:/data
