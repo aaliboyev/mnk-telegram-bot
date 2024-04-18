@@ -1,3 +1,12 @@
+## [0.3.4](https://github.com/aaliboyev/mnk-telegram-bot/compare/v0.3.3...v0.3.4) (2024-04-18)
+
+
+### Bug Fixes
+
+* **dockerfile:** Fixed dockerfile ([22e0654](https://github.com/aaliboyev/mnk-telegram-bot/commit/22e06542160c9a66004b2d20fe0cf560771ac059))
+
+
+
 ## [0.3.3](https://github.com/aaliboyev/mnk-telegram-bot/compare/v0.3.2...v0.3.3) (2024-04-18)
 
 
@@ -32,16 +41,6 @@
 ### Features
 
 * **scroll-to:** Added scroll to behavior for tab click ([1dbe8fe](https://github.com/aaliboyev/mnk-telegram-bot/commit/1dbe8fe7cdbc1822f1a17aef8a9cb5dfbc4d106e))
-
-
-
-# [0.2.0](https://github.com/aaliboyev/mnk-telegram-bot/compare/v0.1.6...v0.2.0) (2024-04-16)
-
-
-### Features
-
-* **categories:** Added category listing ([cb6dd72](https://github.com/aaliboyev/mnk-telegram-bot/commit/cb6dd723df79c4d0bb77b4a4299bbbe4960e71d4))
-* **categories:** Added category listing ([c271167](https://github.com/aaliboyev/mnk-telegram-bot/commit/c27116787bf710d879ba83780c9ed7f47496207b))
 
 
 
